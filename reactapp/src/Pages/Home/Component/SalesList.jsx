@@ -32,7 +32,7 @@ function SalesList({ arrayList, openDialog }){
         } ); 
     }
 
-    let isProfit = ( totalSalesAmount - totalPurchaseAmount > 0 );
+    let isProfit = ( totalSalesAmount - totalPurchaseAmount >= 0 );
     
     return(
         <>
