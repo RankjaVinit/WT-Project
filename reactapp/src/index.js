@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import {LoginPage, SignUp} from './Pages/Login/LoginPage' 
-import SignIn from './Pages/Login/SignIn' 
-import Home from './Pages/Home/Home'
+import {LoginPage, SignUp} from './Pages/Login/LoginPage';
+import SignIn from './Pages/Login/SignIn';
+import SignUp from './Pages/Login/SignUp';
+import Home from './Pages/Home/Home';
 import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

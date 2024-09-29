@@ -20,10 +20,6 @@ mongoose.connect('mongodb+srv://23010101224:HelloEarth@cluster01.3ybw0.mongodb.n
     app.use(express.json());
 
 
-
-
-
-
     app.get('/users' , async(req, res)=>{
         const data = await User.find();
         res.send(data);
