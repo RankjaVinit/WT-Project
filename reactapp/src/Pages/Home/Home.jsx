@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 import { apiBaseUrl } from '../../apiBaseUrl';
 
 import Navbar from '../Component/Navbar';
-import SalesList from '../Component/SalesList';
-import Dialog from '../Component/Dialog';
+import SalesList from './SalesList';
+import Dialog from './Dialog';
 
 import './Home.css';
 
@@ -41,8 +41,9 @@ function Home() {
         .then( (res) => {
             setUser(res);
         });
-    }, [user]);
+    }, [apiUrl]);
 
+    
 
 
 
@@ -50,7 +51,7 @@ function Home() {
 
     return (
         <>
-            <Navbar shopName={user.shopName}/>
+            <Navbar id={user._id} shopName={user.shopName}/>
             
             <SalesList 
                 arrayList={user.history} 

@@ -30,6 +30,8 @@ function Dialog({ setUser, user, closeDialog }){
     };
 
     const handleSubmit = (e) => {
+
+        e.preventDefault();
         
         let invalid = {};
 
@@ -46,15 +48,11 @@ function Dialog({ setUser, user, closeDialog }){
             ...dataValidation,
             ...invalid
         });
-
-        console.log(dataValidation, invalid);
         
         if(isEmpty) return;
         
         let date = new Date();
         const formattedDate = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`; // Format it as day/month/year
-
-        console.log(data);
 
         fetch(`${apiBaseUrl}/userhistory/${user._id}`, {
             method: 'POST',
@@ -99,11 +97,11 @@ function Dialog({ setUser, user, closeDialog }){
                     </div>
 
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-success" onClick={handleSubmit}>
+                        <button type="submit" className="btn btn-success" onClick={handleSubmit}>
                             Submit
                         </button>
 
-                        <button onClick={closeDialog} className="btn btn-danger">
+                        <button type="button" onClick={closeDialog} className="btn btn-danger">
                             Close
                         </button>
                     </div>

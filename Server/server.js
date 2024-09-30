@@ -75,16 +75,14 @@ mongoose.connect('mongodb+srv://23010101224:HelloEarth@cluster01.3ybw0.mongodb.n
 
 
 
-    app.patch('/user/:userName', async(req, res)=>{
+    app.patch('/user/:id', async(req, res)=>{
         const user = await User.findOne({
-            userName : req.params.userName
+            _id : req.params.id
         });
         const data = {...req.body};
-        user.userName = data.userName;
-        user.shopName = data.shopName;
-        user.email = data.email;
-        // user.password = data.password;
-        user.contact = data.contact;
+
+        Object.assign(user, req.body);
+
         const ans = await user.save();
         res.send(ans);
     });
@@ -92,9 +90,10 @@ mongoose.connect('mongodb+srv://23010101224:HelloEarth@cluster01.3ybw0.mongodb.n
 
 
 
-    app.delete('/user/:userName', async(req, res)=>{
-        const ans = await User.deleteOne({userName : req.params.userName});
-        res.send(ans);
+    app.delete('/user/:id', async(req, res)=>{
+        const ans = await User.deleteOne({_id : req.params.id});
+        if(ans) res.send('Deleted');
+        else res.send("Can't find");
     });
 
 
