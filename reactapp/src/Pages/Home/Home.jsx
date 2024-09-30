@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { apiBaseUrl } from '../../apiBaseUrl';
 
-import Navbar from './Component/Navbar';
-import SalesList from './Component/SalesList';
-import Dialog from './Component/Dialog';
+import Navbar from '../Component/Navbar';
+import SalesList from '../Component/SalesList';
+import Dialog from '../Component/Dialog';
 
 import './Home.css';
 

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { apiBaseUrl } from '../../../apiBaseUrl';
+import { apiBaseUrl } from '../../apiBaseUrl';
 import { Outlet, Link, useNavigate, useParams } from "react-router-dom";
 
 function Dialog({ setUser, user, closeDialog }){
