@@ -41,7 +41,7 @@ function Home() {
         .then( (res) => {
             setUser(res);
         });
-    }, []);
+    }, [user]);
 
 
 

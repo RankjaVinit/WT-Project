@@ -46,7 +46,7 @@ mongoose.connect('mongodb+srv://23010101224:HelloEarth@cluster01.3ybw0.mongodb.n
         const user = await User.findOne({_id : req.params.id});
         const data = {...req.body};
         
-        if(user.history.length != 0 || user.history[user.history.length - 1].date === data.date){
+        if(user.history.length != 0 && user.history[user.history.length - 1].date === data.date){
             let old = user.history.pop();
             data.salesAmount += old.salesAmount;
             data.purchaseAmount += old.purchaseAmount;
@@ -59,9 +59,17 @@ mongoose.connect('mongodb+srv://23010101224:HelloEarth@cluster01.3ybw0.mongodb.n
     });
 
     app.post('/user' , async(req, res)=>{
-        const data = new User({...req.body});
-        const ans = await data.save();
-        res.send(ans);
+        const newUser = new User({...req.body});
+
+        const oldUser = await User.findOne({userName : newUser.userName});
+
+        if(oldUser){
+            res.send('Username is unavailable');
+        }
+        else{
+            const ans = await newUser.save();
+            res.send('User Added');
+        }
     });
 
 
@@ -69,8 +77,7 @@ mongoose.connect('mongodb+srv://23010101224:HelloEarth@cluster01.3ybw0.mongodb.n
 
     app.patch('/user/:userName', async(req, res)=>{
         const user = await User.findOne({
-            userName : req.params.userName,
-            email : req.params.email
+            userName : req.params.userName
         });
         const data = {...req.body};
         user.userName = data.userName;

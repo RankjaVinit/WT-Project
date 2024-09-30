@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 
@@ -24,13 +24,10 @@ function Navbar( props ){
                                     Account
                                 </a>
                                 <ul className="dropdown-menu" style={{transform: 'translateX(-50%)'}}>
-                                    <li><a className="dropdown-item" href="#">Action</a></li>
-                                    <li><a className="dropdown-item" href="#">Another action</a></li>
+                                    <li><a className="dropdown-item" href="#">Edit</a></li>
                                     <li><hr className="dropdown-divider" /></li>
                                     <li>
-                                        <a className="btn btn-outline-danger dropdown-item text-danger" type="button" onClick={ () => {
-                                            navigate('/');
-                                        } }> Logout </a>
+                                        <Link className="btn btn-outline-danger dropdown-item text-danger" to='/'> Logout </Link>
                                     </li>
                                 </ul>
 

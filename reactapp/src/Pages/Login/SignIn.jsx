@@ -66,7 +66,7 @@ function SignIn(){
     return(
         <>
 
-            {/* <!-- Email input --> */}
+            {/* <!-- Username input --> */}
             <div data-mdb-input-init className="form-outline mb-4">
                 <label className="form-label" > Username </label> 
                 <label className="form-label ms-4 text-danger" > { dataValidation.username && "Enter Username" } </label>

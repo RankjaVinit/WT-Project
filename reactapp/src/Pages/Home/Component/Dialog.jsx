@@ -69,8 +69,9 @@ function Dialog({ setUser, user, closeDialog }){
         })
         .then(res => res.json())
         .then((res) => {
-            console.log(res);
-            // navigate(`/user/${id}`);
+            setData({
+                ...res
+            });
         });
         
         closeDialog();

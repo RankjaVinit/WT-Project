@@ -53,7 +53,8 @@ function SalesList({ arrayList, openDialog }){
 
                 <div className={`row list-group text-center list-group-horizontal mb-2 text-white`} style={footerStyle}>
                     <div className="col-3"> 
-                        <button className="btn btn-outline-success rounded border-2 h-100 ps-5 pe-5" onClick={openDialog}> Add </button>    
+                        <button className="btn btn-outline-success rounded border-2 h-100 float-start" 
+                            style={{ width: '100%' }} onClick={openDialog}> Add </button>    
                     </div>
                     <div className="col-9">
                         <div className={`row rounded ${isProfit ? 'bg-success' : 'bg-danger'}`}>
