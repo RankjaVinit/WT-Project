@@ -1,8 +1,6 @@
 import { useState } from "react";
-import { apiBaseUrl } from '../../apiBaseUrl';
-import { Outlet, Link, useNavigate, useParams } from "react-router-dom";
 
-function Dialog({ id, correctPassword, closeDialog, callFunction}){
+function Dialog({ correctPassword, closeDialog, callFunction}){
     
 
     const [data, setData] = useState({
@@ -14,8 +12,6 @@ function Dialog({ id, correctPassword, closeDialog, callFunction}){
     const [dataValidation, setDataValidation] = useState({
         password: false
     });
-
-    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setData({
