@@ -41,7 +41,9 @@ function SignUp(){
     }
 
 
-    let submit = () => {
+    let submit = (e) => {
+
+        e.preventDefault();
 
         let invalid = {};
 
@@ -154,9 +156,9 @@ function SignUp(){
             {/* <!-- Buttons --> */}
             <div className="text-center text-lg-center mt-4 pt-2">
                 <button  
-                    type="button"
+                    type="submit"
                     className="btn btn-primary btn-lg"
-                    onClick={submit}
+                    onClick={ e => submit(e) }
                     style={{ paddingLeft: "5rem",  paddingRight: "5rem" }}
                 >SignUp</button>
 

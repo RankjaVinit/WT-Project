@@ -11,9 +11,11 @@ function Edit(){
 
     const [user, setUser] = useState({});
 
-    const [submitStatus, setSubmitStatus] = useState(false);
+    // const [submitStatus, setSubmitStatus] = useState(false);
 
     const [shopName, setShopName] = useState('');
+
+    const [resetData, setResetData] = useState(true);
 
     const [dataValidation, setDataValidation] = useState({
         'shopName': false,
@@ -52,7 +54,7 @@ function Edit(){
             setUser(res);
             setShopName(res.shopName);
         });
-    }, [apiUrl]);
+    }, [apiUrl, resetData]);
 
     let updateChange = (e) => {
         setUser({
@@ -93,14 +95,36 @@ function Edit(){
 
     const submit = (e) => {
 
+        e.preventDefault();
+
         if(e.target.name === "delete"){
-            openDialog();
             setTODelete(true);
+            openDialog();
             return;
         }
 
-        openDialog();
+        let invalid = {};
+
+        let isEmpty = false;
+
+        Object.entries(user).forEach(([key, value]) => {
+            if (value === '') {
+                invalid[key] = true;
+                isEmpty = true; 
+            }
+        });
+
+        setDataValidation({
+            ...dataValidation,
+            ...invalid
+        });
+
+        console.log(dataValidation, isEmpty);
+
+        if( isEmpty ) return;
+
         setTODelete(false);
+        openDialog();
     }
 
     return(
@@ -173,22 +197,34 @@ function Edit(){
 
 
                 {/* Buttons */}
-                <div className="row list-group text-center list-group-horizontal text-dark mt-5 ps-lg-5 pe-lg-5 ps-sm-5 pe-sm-5 ">
+                <div className="row list-group text-center list-group-horizontal text-dark mt-5 ps-lg-5 pe-lg-5 ps-sm-5 pe-sm-5 d-flex justify-content-center">
 
-                    <div className="col-0 col-sm-2 col-md-3 col-lg-4 "></div>
+                    {/* <div className="col-0 col-sm-2 col-md-3 col-lg-2 "></div> */}
+
+
+                    {/* Reset Button */}
+                    <div className="col-11 col-sm-4 col-md-3 col-lg-2">
+                        <button  
+                            name="reset"
+                            type="button"
+                            className="mt-2 btn btn-outline-success btn-lg w-100"
+                            onClick={ () => setResetData( !resetData ) }
+                        > Reset </button>
+                    </div>
+
 
                     {/* Edit Button */}
-                    <div className="col-12 col-sm-4 col-md-3 col-lg-2">
+                    <div className="col-11 col-sm-4 col-md-3 col-lg-2">
                         <button  
                             name="edit"
                             type="button"
-                            className="mt-2 btn btn-outline-success btn-lg w-100"
+                            className="mt-2 btn btn-outline-danger btn-lg w-100"
                             onClick={ (e) => { submit(e) } }
                         > Edit </button>
                     </div>
 
                     {/* Delete Button */}
-                    <div className="col-12 col-sm-4 col-md-3 col-lg-2">
+                    <div className="col-11 col-sm-4 col-md-3 col-lg-2">
                         <button  
                             name="delete"
                             type="button"
@@ -197,7 +233,15 @@ function Edit(){
                         > Delete </button>
                     </div>
 
-                    <div className="col-0 col-sm-2 col-md-3 col-lg-4"></div>
+                    {/* Cancel Button */}
+                    <div className="col-11 col-sm-4 col-md-3 col-lg-2">
+                        <button  
+                            name="delete"
+                            type="button"
+                            className="mt-2 btn btn-lg btn-outline-success w-100"
+                            onClick={ (e) => { navigate(`/user/${user._id}`) } }
+                        > Cancel </button>
+                    </div>
 
                 </div>
 

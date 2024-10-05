@@ -67,7 +67,7 @@ function Dialog({ setUser, user, closeDialog }){
         })
         .then(res => res.json())
         .then((res) => {
-            setData({
+            setUser({
                 ...res
             });
         });

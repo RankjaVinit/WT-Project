@@ -79,7 +79,6 @@ mongoose.connect('mongodb+srv://23010101224:HelloEarth@cluster01.3ybw0.mongodb.n
         const user = await User.findOne({
             _id : req.params.id
         });
-        const data = {...req.body};
 
         Object.assign(user, req.body);
 

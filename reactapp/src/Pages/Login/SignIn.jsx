@@ -31,7 +31,9 @@ function SignIn(){
     }
 
 
-    let submit = () => {
+    let submit = (e) => {
+
+        e.preventDefault();
 
         let invalid = {};
 
@@ -94,9 +96,9 @@ function SignIn(){
 
             <div className="text-center text-lg-center mt-4 pt-2">
 
-                <button  type="button" data-mdb-button-init data-mdb-ripple-init className="btn btn-primary btn-lg"
+                <button  type="submit" data-mdb-button-init data-mdb-ripple-init className="btn btn-primary btn-lg"
                     style={{ paddingLeft: "5rem",  paddingRight: "5rem" }} 
-                    onClick={ submit }
+                    onClick={ (e) => submit(e) }
                 > Login </button>
 
                 <p className="small fw-bold mt-2 pt-1 mb-0">Don't have an account?
