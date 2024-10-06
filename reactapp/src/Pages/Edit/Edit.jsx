@@ -73,7 +73,7 @@ function Edit(){
         })
         .then(res => res.text())
         .then((res) => {
-            {/* Account Deleted */}
+            // Account Deleted
         });
         navigate('/');
     }

@@ -63,7 +63,7 @@ function SignUp(){
 
         if( isEmpty ) return;
 
-        if( data.password != data.confirmPassword ){
+        if( data.password !== data.confirmPassword ){
             setSubmitStatus(true);
             return;
         }

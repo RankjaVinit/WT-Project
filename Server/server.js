@@ -7,9 +7,9 @@ const User = require('./User');
 require('dotenv').config({ path: '../.env' });
 
 const port = 4000;
-const mongoURI = process.env.MONGO_URI;
+const mongoURL = process.env.MONGO_URL;
 
-mongoose.connect(mongoURI).then(()=>{
+mongoose.connect(mongoURL).then(()=>{
 
     console.log('connected');
 

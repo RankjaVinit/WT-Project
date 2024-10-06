@@ -1,10 +1,8 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 
 function Navbar( { id, shopName } ){
-
-    const navigate = useNavigate();
 
     return (
         <>
@@ -20,9 +18,9 @@ function Navbar( { id, shopName } ){
                         </ul>
                         <div className="d-flex dropdown float-end"> 
 
-                                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button className="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                     Account
-                                </a>
+                                </button>
                                 <ul className="dropdown-menu" style={{transform: 'translateX(-50%)'}}>
                                     <li><Link className="dropdown-item" to={`/user/${id}`}> Home </Link></li>
                                     <li><Link className="dropdown-item" to={`/user/edit/${id}`}> Edit </Link></li>
