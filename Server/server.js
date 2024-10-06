@@ -4,10 +4,12 @@ const fs = require('fs');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const User = require('./User');
+require('dotenv').config({ path: '../.env' });
 
 const port = 4000;
+const mongoURI = process.env.MONGO_URI;
 
-mongoose.connect('mongodb+srv://23010101224:HelloEarth@cluster01.3ybw0.mongodb.net/Users').then(()=>{
+mongoose.connect(mongoURI).then(()=>{
 
     console.log('connected');
 
@@ -47,12 +49,9 @@ mongoose.connect('mongodb+srv://23010101224:HelloEarth@cluster01.3ybw0.mongodb.n
         const data = {...req.body};
         
         if(user.history.length != 0 && user.history[user.history.length - 1].date === data.date){
-            let old = user.history.pop();
-            data.salesAmount += old.salesAmount;
-            data.purchaseAmount += old.purchaseAmount;
+           user.history[user.history.length - 1].allSales.push( ...data.allSales );
         }
-       
-        user.history.push(data);
+        else user.history.push(data);
 
         const ans = await user.save();
         res.send(ans);

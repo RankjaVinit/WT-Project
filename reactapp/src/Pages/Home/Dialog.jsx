@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { apiBaseUrl } from '../../apiBaseUrl';
-import { Outlet, Link, useNavigate, useParams } from "react-router-dom";
 
 function Dialog({ setUser, user, closeDialog }){
     
@@ -15,8 +14,6 @@ function Dialog({ setUser, user, closeDialog }){
         salesAmount: false,
         purchaseAmount: false
     });
-
-    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setData({
@@ -53,13 +50,19 @@ function Dialog({ setUser, user, closeDialog }){
         
         let date = new Date();
         const formattedDate = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`; // Format it as day/month/year
+        const formattedTime = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 
         fetch(`${apiBaseUrl}/userhistory/${user._id}`, {
             method: 'POST',
             body:JSON.stringify({
                 date: formattedDate,
-                salesAmount: parseFloat(data.salesAmount),
-                purchaseAmount: parseFloat(data.purchaseAmount)
+                allSales:[
+                    {
+                        time: formattedTime,
+                        salesAmount: parseFloat(data.salesAmount),
+                        purchaseAmount: parseFloat(data.purchaseAmount)
+                    }
+                ]
             }),
             headers:{
                 "Content-Type":"application/json"

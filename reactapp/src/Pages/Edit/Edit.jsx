@@ -89,7 +89,7 @@ function Edit(){
         .then(res => res.text())
         .then( (res) => {
             setUser(res);
-            navigate(`/user/${user._id}`);
+            setResetData(!resetData);
         });
     }
 
@@ -118,8 +118,6 @@ function Edit(){
             ...dataValidation,
             ...invalid
         });
-
-        console.log(dataValidation, isEmpty);
 
         if( isEmpty ) return;
 

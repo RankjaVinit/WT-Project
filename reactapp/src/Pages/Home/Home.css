@@ -1,0 +1,8 @@
+a:hover span{
+    background-color: rgb(220, 53, 69);
+    color: white;
+}
+
+a span{
+    color: rgb(220, 53, 69);
+}
